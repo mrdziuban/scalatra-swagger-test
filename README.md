@@ -10,26 +10,69 @@ generated Swagger JSON will always follow this pattern:
 2. The case class' optional fields in the correct order
 3. The case class' non-optional fields in the correct order
 
-For example, this case class:
+For example, given the [`Test` case class here](https://github.com/mrdziuban/scalatra-swagger-test/blob/master/src/main/scala/io/github/mrdziuban/controllers/TestController.scala#L8-L16), the JSON generated is:
 
-```scala
-case class Test(
-  required1: Int,
-  required2: Int,
-  option1: Option[Int],
-  required3: Int,
-  option2: Option[Int])
+```json
+{
+  "Test": {
+    "id": "Test",
+    "name": "Test",
+    "qualifiedType": "io.github.mrdziuban.controllers.Test",
+    "required": [
+      "required1",
+      "required2",
+      "required3",
+      "required4"
+    ],
+    "properties": {
+      "required1": {
+        "position": 0,
+        "type": "integer",
+        "format": "int32"
+      },
+      "option1": {
+        "position": 0,
+        "type": "integer",
+        "format": "int32"
+      },
+      "option2": {
+        "position": 0,
+        "type": "integer",
+        "format": "int32"
+      },
+      "option3": {
+        "position": 0,
+        "type": "integer",
+        "format": "int32"
+      },
+      "option4": {
+        "position": 0,
+        "type": "integer",
+        "format": "int32"
+      },
+      "required2": {
+        "position": 2,
+        "type": "integer",
+        "format": "int32"
+      },
+      "required3": {
+        "position": 4,
+        "type": "integer",
+        "format": "int32"
+      },
+      "required4": {
+        "position": 5,
+        "type": "integer",
+        "format": "int32"
+      }
+    }
+  }
+}
 ```
 
-will have this order in the generated JSON:
-
-1. required1
-2. option1
-3. option2
-4. required2
-5. required3
-
 ## Build and run
+
+To see for yourself, run the app:
 
 ```bash
 $ sbt 'jetty:start'
